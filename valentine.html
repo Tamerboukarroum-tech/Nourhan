@@ -1,75 +1,131 @@
-<!-- valentine.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 Yes! 💖</title>
+<title>💖 Happy 1st Month Together! 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 <style>
   body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fcb69f);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    font-family: 'Comic Neue', sans-serif;
+    background: radial-gradient(circle at center, #ff9a9e, #fad0c4, #fbc2eb);
     height: 100vh;
-    color: #fff;
     overflow: hidden;
     text-align: center;
+    color: #fff;
   }
 
   h1 {
+    font-family: 'Pacifico', cursive;
     font-size: 3em;
-    margin-bottom: 20px;
-    animation: heartBeat 1s infinite;
+    margin-top: 50px;
+    animation: glow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px #ff6f91, 0 0 20px #ff6f91;
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 10px #ff6f91, 0 0 20px #ff6f91; }
+    100% { text-shadow: 0 0 30px #ffb6c1, 0 0 50px #ffb6c1; }
   }
 
   p {
     font-size: 1.5em;
-    margin: 10px;
+    margin: 20px;
+    animation: floatText 3s ease-in-out infinite alternate;
   }
 
-  @keyframes heartBeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+  @keyframes floatText {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-15px); }
   }
 
   .heart {
     position: absolute;
     font-size: 2em;
-    animation: floatUp 4s linear infinite;
+    animation: floatHeart 5s linear infinite;
+    pointer-events: none;
   }
 
-  @keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity:1;}
-    100% { transform: translateY(-800px) rotate(360deg); opacity:0;}
+  @keyframes floatHeart {
+    0% { transform: translateY(100vh) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+  }
+
+  button {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 20px;
+    background: linear-gradient(45deg, #ff9a9e, #fecfef);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+  }
+
+  .star {
+    position: absolute;
+    color: #fff;
+    font-size: 1.2em;
+    animation: twinkle 3s infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
   }
 </style>
 </head>
 <body>
 
-<h1>💖 Yay! 💖</h1>
-<p>I'm so happy! Thank you for saying YES!</p>
-<p>Happy 1 Month Anniversary & Valentine's Day! 💌</p>
+<h1>💖 Happy 1st Month, Nourhan! 💖</h1>
+<p>Every moment with you is a treasure…</p>
+<p>Here’s to many more adventures together! 🌟</p>
+
+<button id="surpriseBtn">Click for a Surprise 🎁</button>
 
 <script>
-// Floating hearts animation
+// Floating hearts
 function createHearts() {
-  for (let i = 0; i < 50; i++) {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.animationDuration = 3 + Math.random() * 3 + 's';
-    heart.innerText = '❤️';
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
-  }
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerText = '❤️';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.fontSize = 20 + Math.random() * 30 + 'px';
+        heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+    }, 500);
 }
+createHearts();
 
-// Continuous hearts
-setInterval(createHearts, 500);
+// Stars floating around
+function createStars() {
+    for(let i=0;i<30;i++){
+        const star = document.createElement('div');
+        star.className='star';
+        star.innerText='⭐';
+        star.style.left = Math.random()*window.innerWidth+'px';
+        star.style.top = Math.random()*window.innerHeight+'px';
+        star.style.animationDuration = 2 + Math.random()*3 + 's';
+        document.body.appendChild(star);
+    }
+}
+createStars();
+
+// Surprise button click
+const surpriseBtn = document.getElementById('surpriseBtn');
+surpriseBtn.addEventListener('click', () => {
+    alert('You make my heart flutter every day! 💕');
+});
 </script>
 
 </body>
